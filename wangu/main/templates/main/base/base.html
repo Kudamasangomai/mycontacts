@@ -1,0 +1,119 @@
+{% load static %}
+<html>
+<head>
+<title>Wangu </title>
+<link rel="stylesheet" type="text/css" href="{% static 'main/css/bootstrap.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'main/css/bootstrap.min.css' %}">    
+<link rel="stylesheet" type="text/css" href="{% static 'main/css/header.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'main/css/icons.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'main/css/contacts.css' %}">	
+
+
+
+
+
+  <script src="{% static 'google_maps.js' %}"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+
+  <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Company name</a>
+
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <ul class="navbar-nav px-3">
+  	 <li class="nav-item text-nowrap">
+      {% if user.is_authenticated %}
+      <a class="nav-link" href="#">{{user.username|capfirst }}</a>
+    </li>
+    <li class="nav-item text-nowrap">
+      <a href="{% url 'logout' %}">Logout</a>
+    </li>
+  </ul>
+   {% else %}
+
+     {% endif %}
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+   
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="sidebar-sticky pt-5">
+
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'contacts' %}">
+              <span data-feather="home"></span>
+              Contacts <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+             <a class="nav-link" href="{% url 'add-contacts' %}">
+              <span data-feather="file"></span>
+             Add Contact
+            </a>
+          </li>
+  
+        
+          
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">
+              <span data-feather="layers"></span>
+              Logout
+            </a>
+          </li>
+
+      
+     
+       
+       
+
+          
+
+          
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span></span>
+          <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+        
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+
+  
+
+      
+     
+
+      {% block content%}
+
+
+      {% endblock content%}
+      
+    </main>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+crossorigin="anonymous"></script>
+
+{% block extend_footer %}
+
+  {% endblock %}
+
+  <script src="{% static 'main.js' %}"></script>
+
+</body>
+</html>

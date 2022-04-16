@@ -1,0 +1,45 @@
+{% load static %}
+<html>
+<head>
+<title>Wangu </title>
+<!--
+<link rel="stylesheet" type="text/css" href="{% static 'main/css/signin.css' %}">-->
+	<link rel="stylesheet" type="text/css" href="{% static 'main/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/bootstrap.css' %}">
+	
+
+
+	
+</head>
+<body>
+<section class="h-100">
+		<div class="container h-100">
+			<div class="row justify-content-sm-center h-100">
+				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+					<div class="text-center my-5">
+						<iframe src="https://giphy.com/embed/26BROFLJSFhP0cMGk" width="400" height="240" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/art-illustration-liannedias-26BROFLJSFhP0cMGk">via GIPHY</a></p>
+					</div>
+					<div class="card shadow-lg">
+						<div class="card-body p-5">
+	{% block content %}
+
+
+
+	{% endblock content %}
+	<div class="card-footer py-3 border-0">
+							<div class="text-center">
+								Don't have an account? <a href="register.html" class="text-dark">Create One</a>
+							</div>
+						</div>
+					</div>
+					<div class="text-center mt-5 text-muted">
+						Copyright &copy; 2022 &mdash; Wangu
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script  src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+{% extends "main/base/base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+
+
+ <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+    
+        <h1 class="h2">{{ user.first_name|capfirst }} {{ user.last_name }} </h1>
+
+        <div class="btn-toolbar mb-2 mb-md-0">
+        </div>
+     
+      </div>
+   {% if messages %}
+
+     {% for message in messages    %}
+
+
+    <div class="alert alert-{{message.tags}}" role="alert">
+        {{ message }}
+      </div>
+
+      {% endfor  %}
+      {% endif %}
+
+
+  
+  
+        
+
+   <div class="container">
+  <div class="row">
+    <div class="col">
+<div class="card" style="width: 20rem;">
+
+<img src="{{object.contact_image.url}}"  />
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <p class="card-text"><b>Email :</b> {{ object.contact_email }} </p>    
+ <p class="card-text"><b>Lastname :</b> {{ object.contact_lastname }} </p> 
+  <p class="card-text"><b>Firstname :</b> {{object.contact_name}} </p> 
+  <p class="card-text"><b>Address :</b> {{object.contact_address}} </p> 
+  <p class="card-text"><b>Phone :</b> {{object.contact_phone}} </p> 
+ <a href="{% url 'edit-contact' object.id %}" class="btn btn-info">Update</a>
+    <a href="{% url 'delete-contact' object.id %}" class="btn btn-danger">Delete</a>
+
+
+  
+  </div>
+  
+</div>
+  </div>
+
+   <div class="col">
+        <h3><u>..</u></h3>
+
+
+{% for q in qoute %}
+
+{{ qoute }}
+{% endfor %}
+
+
+       
+    </div>
+     </div>
+</div>
+<hr/>
+
+{% endblock %}
+
+
+ 
+
+
+    
+  
+   
+ 

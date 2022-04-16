@@ -1,0 +1,14 @@
+{% extends "main/base/base.html" %}
+
+<h1>test</h1>
+
+{% if searchcontact %}
+
+
+
+{% for a  in searchcontact %}
+
+{{ a.contact_lastname }}
+{% endfor %}
+
+{% endif %}

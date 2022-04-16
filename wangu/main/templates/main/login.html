@@ -1,0 +1,57 @@
+{% extends "main/base/loginbase.html" %}
+{% block content %}
+
+
+<style>
+    #id_username {
+    margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+    }
+    #id_password{
+           margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+    }
+    .errorlist{
+        color: red;
+        font-weight: bold;
+        list-style: none;
+    }
+    </style>
+
+							<center><h1 class="fs-4 card-title fw-bold mb-4">Login</h1></center>
+							<form method="POST" class="needs-validation" novalidate="" autocomplete="off">
+							
+									 {% csrf_token %}
+                                     {{form.as_p}}
+								
+
+								
+
+								<div class="d-flex align-items-center">
+									<center>
+									<button type="submit" class="btn btn-primary ms-auto">
+										Login
+									</button>
+									</center>
+								</div>
+							</form>
+						</div>
+
+    	
+        
+       
+
+    
+
+
+
+
+{% endblock content %}
+
+
+
+
+						
+
