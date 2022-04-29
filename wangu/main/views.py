@@ -13,6 +13,7 @@ from django.db.models import Q
 
 
 
+
 # Create your views here.
 class LoginView(LoginView):
     template_name = 'main/login.html'
@@ -94,13 +95,14 @@ class SearchContactView(LoginRequiredMixin,ListView):
        
         
         #qs = super().get_queryset(*args, **kwargs)
-        query = self.request.GET.get('searchcontact')    
-      
+        query = self.request.GET.get('searchcontact') 
+        #query['contact'] = contacts.objects.get(userid = self.request.user.id)   
+        #query['contact'] = contacts.objects.all().distinct('userid_id')
         object_list = contacts.objects.filter(
-            Q(contact_lastname__icontains=query)
-            
+            Q(contact_lastname__icontains=query )
+
             )
         
         return object_list
-    
+
   
