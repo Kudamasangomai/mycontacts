@@ -7,11 +7,9 @@ from django.urls import reverse_lazy
 from django.shortcuts import render
 from .forms import AddContactForm
 from .models import contacts
-
-
-
 from django.conf import settings
-from .mixins import Directions
+from django.db.models import Q
+
 
 
 
@@ -69,6 +67,12 @@ class ViewContactView(LoginRequiredMixin,DetailView):
     model = contacts
     template_name = 'main/view-contact.html'
 
+    def test_func(self):
+        contact = self.get_object()
+        if self.request.user == contact.userid:
+            return True
+        return False 
+
 class DeleteContactView(LoginRequiredMixin,UserPassesTestMixin,SuccessMessageMixin,DeleteView):
     model = contacts
     success_url = reverse_lazy('contacts')
@@ -86,12 +90,17 @@ class SearchContactView(LoginRequiredMixin,ListView):
     template_name = 'main/searchcontact.html'
     context_object_name = 'searchcontact'
 
-    def get_queryset(self,*args,**kwargs):
+    def get_queryset(self, **kwargs):  
+       
         
-        qs = super().get_queryset(*args, **kwargs)
-        query = self.request.Post.get('searchcontact')
-        if query:
-            qs.filter(contact_lastname__icontains = query)        
-        return qs
+        #qs = super().get_queryset(*args, **kwargs)
+        query = self.request.GET.get('searchcontact')    
+      
+        object_list = contacts.objects.filter(
+            Q(contact_lastname__icontains=query)
+            
+            )
+        
+        return object_list
     
   

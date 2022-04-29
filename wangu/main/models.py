@@ -16,7 +16,7 @@ class contacts(models.Model):
     contact_lastname = models.CharField(max_length=100)
     contact_job = models.CharField(max_length=100,default='')
     contact_email = models.EmailField(max_length=100)
-    contact_phone = models.PositiveIntegerField(max_length=20,unique= True)
+    contact_phone = models.PositiveIntegerField(unique= True)
     contact_address = models.CharField(max_length=100)
     contact_image = models.ImageField(default='default.jpg' ,upload_to ='profile_pics')
 

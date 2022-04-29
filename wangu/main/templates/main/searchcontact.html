@@ -1,14 +1,46 @@
 {% extends "main/base/base.html" %}
-
-<h1>test</h1>
+{% block content %}
+<h3>searched contacts</h3>
 
 {% if searchcontact %}
 
+<h5> Your Searched for .....</h5>
 
+<table class="table table-striped">
+    <tr>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Firstname</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">email</th>
+            <th scope="col">contact</th>
+            <th scope="col">address</th>
+          </tr>
+        </thead>
+{% for contact  in searchcontact %}
+      <tr>
+        <td scope="col">#</td>
+        <td scope="col">{{ contact.contact_name }}</td>
+        <td scope="col">{{ contact.contact_lastname }}</td>
+        <td scope="col">{{ contact.contact_email }}</td>
+        <td scope="col">{{ contact.contact_phone }}</td>
+        <td scope="col">{{ contact.contact_address }}</td>
+      </tr>
+      {% endfor %}
+    </tr>
+    <tbody>
+   
+     
+    
+    </tbody>
+  </table>
 
-{% for a  in searchcontact %}
+  {%else %}
 
-{{ a.contact_lastname }}
-{% endfor %}
+<div class="alert alert-warning" role="alert">
+    Contact Not found Make sure you are using the correct spelling
+  </div>
+  <center><a href="{% url 'contacts' %}">Return to contacts</a></center>
 
 {% endif %}
+{% endblock %}

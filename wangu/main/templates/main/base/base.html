@@ -7,13 +7,8 @@
 <link rel="stylesheet" type="text/css" href="{% static 'main/css/header.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'main/css/icons.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static 'main/css/contacts.css' %}">	
-
-
-
-
-
-  <script src="{% static 'google_maps.js' %}"></script>
 </head>
+
 <body>
 
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -49,7 +44,7 @@
           <li class="nav-item">
             <a class="nav-link active" href="{% url 'contacts' %}">
               <span data-feather="home"></span>
-              Contacts <span class="sr-only">(current)</span>
+              Contacts <span class="sr-only"></span>
             </a>
           </li>
           <li class="nav-item">
@@ -81,30 +76,19 @@
       </div>
     </nav>
 
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+    <main role="main" class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
-  
-
-      
      
 
-      {% block content%}
+      {% block content %}
 
 
-      {% endblock content%}
+      {% endblock content %}
       
     </main>
   </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" 
-integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
-crossorigin="anonymous"></script>
-
-{% block extend_footer %}
-
-  {% endblock %}
-
-  <script src="{% static 'main.js' %}"></script>
+ 
 
 </body>
 </html>
