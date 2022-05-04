@@ -24,6 +24,7 @@ urlpatterns = [
     path('view_contact/<int:pk>/',ViewContactView.as_view(),name='view-contact'),
     path('delete_contact/<int:pk>/',DeleteContactView.as_view(),name='delete-contact'),
     path('searched_contacts/',SearchContactView.as_view(),name='searched-contact')
+    
 
     
 ]
