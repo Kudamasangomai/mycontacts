@@ -15,13 +15,13 @@ class contacts(models.Model):
     contact_name = models.CharField(max_length=100, blank=True, null=True)
     contact_lastname = models.CharField(max_length=100)
     contact_job = models.CharField(max_length=100,default='')
-    contact_email = models.EmailField(max_length=100)
+    contact_email = models.EmailField(max_length=100,unique=True)
     contact_phone = models.PositiveIntegerField(unique= True)
     contact_address = models.CharField(max_length=100)
     contact_image = models.ImageField(default='default.jpg' ,upload_to ='profile_pics')
 
     class Meta:
-        ordering =['contact_name']
+        ordering =['id']
     
 
     def __str__(self):
