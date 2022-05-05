@@ -5,4 +5,5 @@
 
 </div>
 
-### Django App Crud with class  based view Only
+### Django CRUD App  with class  based view Only
+## has an API too
