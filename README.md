@@ -6,4 +6,4 @@
 </div>
 
 ### Django CRUD App  with class  based view Only
-# has an api built using Django Rest Framework
+### has an api built using Django Rest Framework
