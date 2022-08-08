@@ -22,7 +22,8 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('main.urls')),
-    path('wanguapi/',include('wanguapi.urls'))
+    path('wanguapi/',include('wanguapi.urls')),
+    path('ajax/',include('ajax.urls'))
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,44 @@
+{% extends "main/base/base.html" %}
+
+
+{% block content %}
+
+<h1>ajax</h1>
+<div id="list">
+
+</div>
+
+<script>
+    list()
+    function list(){
+
+        var listdiv = document.getElementById('list')
+        var url = 'http://localhost:8000/wanguapi/'
+        fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data){
+            console.log('data:',data)
+
+            var contacts = data
+            for (var i in contacts){
+                var item = `
+                <ul>
+                <li> ${contacts[i].contact_name}  ${contacts[i].contact_lastname}</li>
+                <ul
+                
+                `
+
+                    listdiv.innerHTML += item
+                
+            }
+        })
+
+    }
+</script>
+{% endblock content %}
+
+
+
+
+
+

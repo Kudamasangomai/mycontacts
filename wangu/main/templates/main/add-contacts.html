@@ -3,7 +3,16 @@
 {% block content %}
  
 
-<h1>Add Contact</h1>
+{% if object.contact_name %}
+
+<br><br>
+<h4>Updating details of {{ object.contact_name }} {{ object.contact_lastname }}</h4>
+  
+{% else %}
+<h4>Add Contact</h4>
+{% endif %}
+  
+
 
 <form method="POST" enctype="multipart/form-data" autocomplete="off">
      {% csrf_token %}

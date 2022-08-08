@@ -1,3 +1,4 @@
+from urllib import response
 from django.shortcuts import render
 from requests import request
 from rest_framework.response import Response
@@ -6,6 +7,22 @@ from main.models import contacts
 from .serializers import contactsSerializers
 from rest_framework import status
 
+# function based view api
+
+@api_view(['GET'])
+def allapiurls(request):
+    api_links ={
+			'All':'test',
+
+	        'All Contacts':'/all_contacts',
+			'Contact detail':'/contact_detail/<int:id>/',
+			'Contact Create':'/contact_create',
+			'Contact Update':'/contact_update/<int:id>',
+			'Contact Delete':'/contact_delete/<int:id>',
+			
+		    }
+    return Response(api_links)
+	
 
 @api_view(['GET'])
 def get_all(request):
@@ -49,3 +66,4 @@ def delete_contact(requet,id):
 	
 	return Response("contact seccesfully deleted")
 	#return Response(status=status.HTTP_204_NO_CONTENT)
+

@@ -4,17 +4,14 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
-from django.shortcuts import render
+from django.shortcuts import render #works with function based View
 from .forms import AddContactForm
 from .models import contacts
 from django.conf import settings
 from django.db.models import Q
 
 
-
-
-
-# Create your views here.
+#login view 
 class LoginView(LoginView):
     template_name = 'main/login.html'
     fields = '__all__'
@@ -23,11 +20,12 @@ class LoginView(LoginView):
 
 
 class ContactListView(LoginRequiredMixin,ListView):
-    model = contacts
-    template_name = 'main/contacts.html'
-    context_object_name = 'contacts'
-    paginate_by = 6
+    model = contacts # the model /database we are getting out data
+    template_name = 'main/contacts.html'  # were we going to display i.e the html page
+    context_object_name = 'contacts' #variable name we will use to loop through the data
+    paginate_by = 6 #paginating 
 
+    #this method overrides the default query to match want we want
     def get_queryset(self,**kwargs):
         queryset = super(ContactListView, self).get_queryset()
         queryset = contacts.objects.filter(userid = self.request.user )
@@ -39,10 +37,10 @@ class AddContactView(LoginRequiredMixin,SuccessMessageMixin,CreateView):
     form_class = AddContactForm
     template_name = 'main/add-contacts.html'
     success_message = 'Contact successfully Added'
-    #success_url = reverse_lazy('contacts')we can redirect here or use the absolute ur in contacts model
+    #success_url = reverse_lazy('contacts')we can redirect here or use the absolute url in contacts model.py
 
     def form_valid(self,form):
-        form.instance.userid = self.request.user #adding the logged in user to the frm instance
+        form.instance.userid = self.request.user #adding the logged in user to the form instance
         return super().form_valid(form)
     
     
@@ -62,7 +60,7 @@ class EditContactView(LoginRequiredMixin,UserPassesTestMixin,SuccessMessageMixin
         contact = self.get_object()
         if self.request.user == contact.userid:
             return True
-        return False   
+        return    
 
 class ViewContactView(LoginRequiredMixin,DetailView):
     model = contacts
@@ -79,7 +77,7 @@ class DeleteContactView(LoginRequiredMixin,UserPassesTestMixin,SuccessMessageMix
     success_url = reverse_lazy('contacts')
     success_message = "Contact SuccessFully Deleted"
 
-    #test and see if the user who wants to delete it is the actual User
+    #test and see if the user who wants to delete it is the owner
     def test_func(self):
         contact = self.get_object()
         if self.request.user == contact.userid:
@@ -91,14 +89,9 @@ class SearchContactView(LoginRequiredMixin,ListView):
     template_name = 'main/searchcontact.html'
     context_object_name = 'searchcontact'
 
-    def get_queryset(self, **kwargs):  
-       
-        
-        #qs = super().get_queryset(*args, **kwargs)
-        query = self.request.GET.get('searchcontact') 
-        #query['contact'] = contacts.objects.get(userid = self.request.user.id)   
-        #query['contact'] = contacts.objects.all().distinct('userid_id')
-        object_list = contacts.objects.filter(
+    def get_queryset(self, **kwargs):
+        query = self.request.GET.get('searchcontact') #getting wht the user has entered
+        object_list = contacts.objects.filter(Q(userid = self.request.user),
             Q(contact_lastname__icontains=query )
 
             )
