@@ -23,9 +23,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('main.urls')),
     path('wanguapi/',include('wanguapi.urls')),
-    path('ajax/',include('ajax.urls'))
+    path('ajax/',include('ajax.urls')),
+    #path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls')),
+
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL ,document_root = settings.MEDIA_ROOT)
 
+#http://localhost:8000/api-auth/login/
